@@ -1,0 +1,42 @@
+<app-header (onAdd)="onAddWord()"></app-header>
+
+
+<section class="container margin-top-header">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <h1 class="title title-center">query word...</h1>
+                <form [formGroup]="word_search" (ngSubmit)="onSearch()">
+                    <div class="input-group">
+                        <mat-form-field appearance="legacy">
+                            <input matInput formControlName="word">
+                            <mat-icon matSuffix>search</mat-icon>
+                        </mat-form-field>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="card">
+                <div *ngIf="context_consultant?.found_word && !context_consultant?.error" class="result-success">
+                    <mat-card>
+                        <mat-card-title>{{context_consultant.found_word.title}}</mat-card-title>
+                        <mat-card-subtitle>{{context_consultant.found_word.translation}}</mat-card-subtitle>
+                        <mat-card-content>
+                            <p>{{context_consultant.found_word.description}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div *ngIf="!context_consultant?.found_word && context_consultant?.error" class="result-error">
+                    <mat-card>
+                        <mat-card-title>{{context_consultant.word}}</mat-card-title>
+                        <mat-card-subtitle>Not found</mat-card-subtitle>
+                        <mat-card-content>
+                            <p>we couldn't find the word in our database.</p>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

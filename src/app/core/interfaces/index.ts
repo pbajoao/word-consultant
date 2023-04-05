@@ -1,0 +1,1 @@
+export * from './context_consultant.interface';
